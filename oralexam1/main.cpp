@@ -24,7 +24,7 @@ void readFile(string fileName, vector<string> &file){
 
 
 int main(){
-    string fileName, header, value, title, animeTitle;
+    string header, value, animeTitle;
     int animeEp = 0;
     vector<string> file;
     vector<string> parsedFile;
