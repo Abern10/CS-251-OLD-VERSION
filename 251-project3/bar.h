@@ -11,17 +11,16 @@ using namespace std;
 //
 class Bar {
  private:
-    // Private member variables for a Bar object
-    // TO DO:  Define private member variables for this class
-    // NOTE: You should not be allocating memory on the heap for this class.
+    string name, category;
+    int value;
 
  public:
 
     // default constructor:
     Bar() {
-        
-        // TO DO:  Write this constructor.
-        
+        name = "";
+        value = 0;
+        category = "";
     }
 
     //
@@ -30,8 +29,9 @@ class Bar {
     // Parameter passed in constructor Bar object.
     //
     Bar(string name, int value, string category) {
-        
-        // TO DO:  Write this constructor.
+        this->name = name;
+        this->value = value;
+        this->category = category;
         
     }
 
@@ -44,26 +44,17 @@ class Bar {
 
     // getName:
 	string getName() {
-        
-        // TO DO:  Write this function.
-        
-        return "";  // TO DO:  update this, it is only here so code compiles.
+        return name;
 	}
 
     // getValue:
 	int getValue() {
-        
-		// TO DO:  Write this function.
-        
-        return 0;    // TO DO:  update this, it is only here so code compiles.
+        return value;
 	}
 
     // getCategory:
 	string getCategory() {
-        
-        // TO DO:  Write this function.
-        
-        return ""; // TO DO:  update this, it is only here so code compiles.
+        return category;
 	}
 
 	// operators
