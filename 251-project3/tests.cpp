@@ -35,6 +35,10 @@ bool testBarParamConstructor() {
     return true;
 }
 
+void testDefualtBarChart(){
+	
+}
+
 int main() {
 	testBarDefaultConstructor();
 	testBarParamConstructor();

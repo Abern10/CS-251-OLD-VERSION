@@ -37,8 +37,8 @@ const string RED("\033[1;31m");
 const string PURPLE("\033[1;35m");
 const string BLUE("\033[1;34m");
 const string WHITE("\033[1;37m");
-const string RESET("\033[0m");
-const vector<string> COLORS = {CYAN, GREEN, GOLD, RED, PURPLE, BLUE, WHITE};
+// const string RESET("\033[0m");
+// const vector<string> COLORS = {CYAN, GREEN, GOLD, RED, PURPLE, BLUE, WHITE};
 
 
 
@@ -57,22 +57,25 @@ class BarChart {
     Bar* bars;  // pointer to a C-style array
     int capacity;
     int size;
+    string frame;
     
  public:
     
     // default constructor:
     BarChart() {
-        
-        // TO DO:  Write this constructor.
-        
+        bars = NULL;
+        capacity = 0;
+        size = 0;
+        frame = "";
     }
     
     // parameterized constructor:
     // Parameter passed in determines memory allocated for bars.
     BarChart(int n) {
-        
-        // TO DO:  Write this constructor.
-        
+        bars = new Bar[n];
+        capacity = n;
+        size = 0;
+        frame = "";
     }
 
     //
@@ -83,29 +86,45 @@ class BarChart {
     // BarChart as a parameter by value.
     //
     BarChart(const BarChart& other) {
-        
-        // TO DO:  Write this constructor.
-        
+        this->bars = new Bar[other.capacity];
+        this->size = size = other.size;
+        this->capacity = other.capacity;
+        this->frame = other.frame;
+
+        for(int i = 0; i < other.size; i++){
+            this->bars[i] = other.bars[i];
+        }
     }
+    
     //
     // copy operator=
     //
     // Called when you assign one BarChart into another, i.e. this = other;
     //
     BarChart& operator=(const BarChart& other) {
-        BarChart bc;
-        
-        // TO DO:  Write this operator.
-        
-        return bc;   // TO DO:  update this, it is only here so code compiles.
+        if(this == &other){
+            return *this;
+        }
+        delete[] bars;
+
+        this->bars = new Bar[other.capacity];
+        this->size = size = other.size;
+        this->capacity = other.capacity;
+        this->frame = other.frame;
+
+        for(int i = 0; i < other.size; i++){
+            this->bars[i] = other.bars[i];
+        }
+        return *this;
     }
 
     // clear
     // frees memory and resets all private member variables to default values.
     void clear() {
-        
-        // TO DO:  Write this operator.
-        
+        delete[] bars;
+        capacity = 0;
+        size = 0;
+        frame = "";
     }
     
     //
@@ -115,25 +134,20 @@ class BarChart {
     // BarChart.
     //
     virtual ~BarChart() {
-
-        // TO DO:  Write this destructor.
-        
+        if( bars != nullptr){
+            delete[] bars;
+        }
     }
     
     // setFrame
     void setFrame(string frame) {
-    	
-        // TO DO:  Write this destructor.
-        
+    	this->frame = frame;
     }
     
     // getFrame()
     // Returns the frame of the BarChart oboject.
     string getFrame() {
-        
-        // TO DO:  Write this function.
-        
-        return ""; // TO DO:  update this, it is only here so code compiles.
+        return frame;
     }
 
     // addBar
@@ -141,19 +155,20 @@ class BarChart {
     // returns true if successful
     // returns false if there is not room
     bool addBar(string name, int value, string category) {
-        
-        // TO DO:  Write this function.
-        
-        return true; // TO DO:  update this, it is only here so code compiles.
+        Bar b = Bar(name, value, category);
+        if(this->size == this->capacity){
+            return false;
+        }
+        else{
+            this->bars[size] = b;
+            return true;
+        }
     }
     
     // getSize()
     // Returns the size (number of bars) of the BarChart object.
     int getSize() {
-        
-        // TO DO:  Write this function.
-        
-        return 0;  // TO DO:  update this, it is only here so code compiles.
+        return size;
     }
     
     // operator[]
@@ -162,11 +177,12 @@ class BarChart {
     // If i is out of bounds, throw an out_of_range error message:
     // "BarChart: i out of bounds"
     Bar& operator[](int i) {
-        Bar b;
-        
-        // TO DO:  Write this function.
-        
-        return b;  // TO DO:  update this, it is only here so code compiles.
+        if(i < 0 || i > this->size){
+            __throw_out_of_range("BarChart: i out of bounds");
+        }
+        else{
+            return bars[i];
+        }
     }
     
     // dump
@@ -179,8 +195,10 @@ class BarChart {
     // bname 4 category2
     // cname 3 category3" <-newline here
     void dump(ostream &output) {
-
-        // TO DO:  Write this function.
+        output << "frame: " << this->frame << endl;
+        for(int i = 0; i < this->size; i++){
+            output << bars[i];
+        }
         
     }
     
