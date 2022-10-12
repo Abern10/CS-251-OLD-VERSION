@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
+#include <vector>
 #include "myrandom.h" // used in graders, do not remove
 #include "bar.h"
 
@@ -38,7 +39,7 @@ const string PURPLE("\033[1;35m");
 const string BLUE("\033[1;34m");
 const string WHITE("\033[1;37m");
 // const string RESET("\033[0m");
-// const vector<string> COLORS = {CYAN, GREEN, GOLD, RED, PURPLE, BLUE, WHITE};
+const vector<string> COLORS = {CYAN, GREEN, GOLD, RED, PURPLE, BLUE, WHITE};
 
 
 
@@ -161,6 +162,7 @@ class BarChart {
         }
         else{
             this->bars[size] = b;
+            this->size++;
             return true;
         }
     }
@@ -197,9 +199,8 @@ class BarChart {
     void dump(ostream &output) {
         output << "frame: " << this->frame << endl;
         for(int i = 0; i < this->size; i++){
-            output << bars[i];
+            output << bars[i].getName() << " " << bars[i].getValue() << " " << bars[i].getCategory() << endl;
         }
-        
     }
     
     // graph
