@@ -212,18 +212,27 @@ class BarChart {
     	int lenMax = 60;  // this is number of BOXs that should be printed
                           // for the top bar (max value)
         
-        // TO DO: read this example and this erase it.
-        // e.g. Here I am plotting 60 red BOXs to output
+        sort(bars, bars+size, greater<Bar>());
+
+        for(int i = 0; i < COLORS.size(); i++){
+            for(int j = 0; j < this->size; j++){
+                colorMap.insert({bars[j].getCategory(), COLORS[i]});
+            }
+        }
+
         string color = "\033[1;36m";  // you should get this from colorMap
         string barstr = "";
-        for (int i = 0; i < lenMax; i++) {
-            barstr += BOX;
-        }
-        output << color << barstr << endl;
-    	
-        // TO DO:  Write this function.
-        
+        for(int i = 0; i < size;i++){
+            if(colorMap.count(bars[i].getCategory()) == 1){
+                color = colorMap.at(bars[i].getCategory());
+            }
+            float barLength = (((bars[i].getValue() * 1.0) / (bars[0].getValue() * 1.0)) * 60.0);
+            for(int i = 0; i < barLength; i++){
+                barstr += BOX;
+            }
+            output << color << barstr << " " << bars[i].getName() << " " << bars[i].getValue() << endl;
+            barstr = "";
+            barLength = 0;
+        }   
     }
-    
 };
-

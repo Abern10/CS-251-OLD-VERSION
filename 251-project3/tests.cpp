@@ -38,10 +38,24 @@ bool testBarParamConstructor() {
 void testDefualtBarChart(){
 	
 }
+void testGraph() {
+	BarChart bc(10);
+	bc.addBar("Chicago", 1020,"US");
+	bc.addBar("Paris", 1200,"France");
+	bc.addBar("NYC", 1300,"US");
+
+	string red("\033[1;36m");
+	string blue("\033[1;33m");
+	map<string, string> colorMap;
+	colorMap["US"] = red;
+	colorMap["France"] = blue;
+	bc.graph(cout, colorMap, 3);
+}
 
 int main() {
 	testBarDefaultConstructor();
 	testBarParamConstructor();
+	testGraph();
 	
     return 0;
 }
