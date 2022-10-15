@@ -30,6 +30,9 @@ class BarChartAnimate {
     int size;
     int capacity;
     map<string, string> colorMap;
+    string title;
+    string xlabel;
+    string source;
 
  public:
 
@@ -37,9 +40,13 @@ class BarChartAnimate {
     // Like the ourvector, the barcharts C-array should be constructed here
     // with a capacity of 4.
     BarChartAnimate(string title, string xlabel, string source) {
-        
-        // TO DO:  Write this constructor.
-        
+        barcharts = new BarChart;
+        this->title = "";
+        this->xlabel = "";
+        this->source = "";
+        capacity = 4;
+        size = 0;
+        colorMap = {"",""};
     }
 
     //
@@ -49,9 +56,7 @@ class BarChartAnimate {
     // by BarChartAnimate.
     //
     virtual ~BarChartAnimate() {
-        
-        // TO DO:  Write this destructor.
-        
+        delete[] barcharts;
     }
 
     // addFrame:
@@ -84,9 +89,7 @@ class BarChartAnimate {
     // Returns the size of the BarChartAnimate object.
     //
     int getSize(){
-        
-        return 0;  // TO DO:  update this, it is only here so code compiles.
-        
+        return size; 
     }
 
     //
@@ -97,10 +100,11 @@ class BarChartAnimate {
     // "BarChartAnimate: i out of bounds"
     //
     BarChart& operator[](int i){
-        BarChart bc;
-        
-        // TO DO:  Write this function.
-        
-        return bc; // TO DO:  update this, it is only here so code compiles.
+        if(i < 0 || i > this->size){
+            __throw_out_of_range("BarChart: i out of bounds");
+        }
+        else{
+            return barcharts[i];
+        }
     }
 };

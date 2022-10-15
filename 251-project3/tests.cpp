@@ -49,7 +49,7 @@ void testGraph() {
 	map<string, string> colorMap;
 	colorMap["US"] = red;
 	colorMap["France"] = blue;
-	bc.graph(cout, colorMap, 3);
+	bc.graph(cout, colorMap, 4);
 }
 
 int main() {

@@ -4,7 +4,6 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
-#include <vector>
 #include "myrandom.h" // used in graders, do not remove
 #include "bar.h"
 
@@ -220,19 +219,19 @@ class BarChart {
             }
         }
 
-        string color = "\033[1;36m";  // you should get this from colorMap
+        string color = "";  // you should get this from colorMap
         string barstr = "";
-        for(int i = 0; i < size;i++){
+        for(int i = 0; i < top; i++){
             if(colorMap.count(bars[i].getCategory()) == 1){
                 color = colorMap.at(bars[i].getCategory());
             }
-            float barLength = (((bars[i].getValue() * 1.0) / (bars[0].getValue() * 1.0)) * 60.0);
-            for(int i = 0; i < barLength; i++){
+            float lengthOfBar = (((bars[i].getValue() * 1.0) / (bars[0].getValue() * 1.0)) * 60.0);
+            for(int i = 0; i < lengthOfBar; i++){
                 barstr += BOX;
             }
             output << color << barstr << " " << bars[i].getName() << " " << bars[i].getValue() << endl;
             barstr = "";
-            barLength = 0;
+            lengthOfBar = 0;
         }   
     }
 };
