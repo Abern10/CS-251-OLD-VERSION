@@ -38,42 +38,42 @@ class Bar {
     // destructor:
     virtual ~Bar() {
         
-        // TO DO:  Write this destructor or leave empty if not needed.
+        // destructor not needed here
         
     }
 
     // getName:
 	string getName() {
-                return name;
+        return name;
 	}
 
     // getValue:
 	int getValue() {
-                return value;
+        return value;
 	}
 
     // getCategory:
 	string getCategory() {
-                return category;
+        return category;
 	}
 
 	// operators
     // TO DO:  Write these operators.  This allows you to compare two Bar
     // objects.  Comparison should be based on the Bar's value.  For example:
 	bool operator<(const Bar &other) const {
-                return this->value < other.value;
+        return this->value < other.value;
 	}
 
 	bool operator<=(const Bar &other) const {
-                return this->value <= other.value;
+        return this->value <= other.value;
 	}
 
 	bool operator>(const Bar &other) const {
-                return this->value > other.value;
+        return this->value > other.value;
 	}
 
 	bool operator>=(const Bar &other) const {
-                return this->value >= other.value;
+        return this->value >= other.value;
 	}
 };
 

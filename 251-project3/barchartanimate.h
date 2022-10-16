@@ -33,6 +33,66 @@ class BarChartAnimate {
     string title;
     string xlabel;
     string source;
+    int colorIndex;
+
+    void ifSizeIsLessThanCapacity(ifstream &file){
+        string line, year, name, country, category;
+        int value, groupOfRecords;
+
+        getline(file, line); // skips empty line
+            if(file.eof()){
+                return;
+            }
+            
+            getline(file, line); // gets group of records
+            groupOfRecords = stoi(line);
+
+             // stores the line above each frame
+            BarChart bc(groupOfRecords); // holds an individual barchart for each group of records
+
+            for(int i = 0; i < groupOfRecords; i++){
+                getline(file, line); // gets a line in data
+                readingEachLine(line, year, name, country, category, value, bc);
+            }
+
+            this->barcharts[size] = bc;
+            this->size++;
+    }
+
+    void readingEachLine(string line, string &year, string &name, string &country, string &category, int &value, BarChart &bc){
+        stringstream ss(line);
+        string temp;
+        getline(ss, year, ',');
+        getline(ss, name, ',');
+        getline(ss, country, ',');
+        getline(ss, temp, ',');
+        getline(ss, category, ',');
+
+        value = stoi(temp);
+
+        bc.addBar(name, value, category);
+        bc.setFrame(year);
+
+        if(colorMap.count(category) == 0){
+            if(colorIndex == 7){
+                colorIndex = 0;
+            }
+            colorMap[category] = COLORS[colorIndex];
+            colorIndex++;
+        }
+    }
+
+    void addSize(){
+        int doubledCapacity = capacity * 2;
+        BarChart* newBC = new BarChart[doubledCapacity];
+
+        for(int i = 0; i < this->size; i++){
+            newBC[i] = barcharts[i];
+        }
+        delete[] barcharts;
+        barcharts = newBC;
+        capacity = doubledCapacity;
+    }
 
  public:
 
@@ -40,13 +100,13 @@ class BarChartAnimate {
     // Like the ourvector, the barcharts C-array should be constructed here
     // with a capacity of 4.
     BarChartAnimate(string title, string xlabel, string source) {
-        barcharts = new BarChart;
-        this->title = "";
-        this->xlabel = "";
-        this->source = "";
-        capacity = 4;
+        barcharts = new BarChart[4];
         size = 0;
-        colorMap = {"",""};
+        capacity = 4;
+        this->title = title;
+        this->xlabel = xlabel;
+        this->source = source;
+        colorIndex = 0;
     }
 
     //
@@ -65,9 +125,15 @@ class BarChartAnimate {
     // ourvector.h for how to double the capacity).
     // See application.cpp and handout for pre and post conditions.
     void addFrame(ifstream &file) {
-    	
-        // TO DO:  Write this constructor.
-        
+
+        // checks to see if barCharts has run out of space, doubles if it has
+        if(this->size == this->capacity){
+            addSize();
+        }
+        // if size of barCharts is still less then capacity
+        else{
+            ifSizeIsLessThanCapacity(file);
+        }
     }
 
     // animate:
@@ -79,9 +145,23 @@ class BarChartAnimate {
     // in between each frame.
 	void animate(ostream &output, int top, int endIter) {
 		unsigned int microsecond = 50000;
-        
-        // TO DO:  Write this function.
-			
+        int limit;
+        if(endIter == -1){
+            endIter == this->size;
+        }
+        else{
+            limit = endIter;
+        }
+        for(int i = 0; i < limit; i++){
+            top = barcharts[i].getSize();
+            usleep(3 * microsecond);
+            output << CLEARCONSOLE;
+            output << BLACK << title << endl;
+            output << BLACK << source << endl;
+            barcharts[i].graph(output, colorMap, top);
+            output << BLACK << xlabel << endl;
+            output << BLACK << "Frame: " << barcharts[i].getFrame() << endl;
+        }
 	}
 
     //
@@ -89,7 +169,7 @@ class BarChartAnimate {
     // Returns the size of the BarChartAnimate object.
     //
     int getSize(){
-        return size; 
+        return size;
     }
 
     //
@@ -101,7 +181,7 @@ class BarChartAnimate {
     //
     BarChart& operator[](int i){
         if(i < 0 || i > this->size){
-            __throw_out_of_range("BarChart: i out of bounds");
+            __throw_out_of_range("BarChartAnimate: i out of bounds");
         }
         else{
             return barcharts[i];

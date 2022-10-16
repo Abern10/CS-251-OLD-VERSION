@@ -6,12 +6,13 @@
 #include <map>
 #include "myrandom.h" // used in graders, do not remove
 #include "bar.h"
+#include <vector>
 
 using namespace std;
 
 // Constants used for bar chart animation.  You will primarily
 // use these in barchartanimate.h, but you might find some useful here.
-const string BOX = "\u29C8";
+const string BOX = "X";
 const string CLEARCONSOLE = "\033[2J";
 const string RESET("\033[0m");
 
@@ -26,7 +27,7 @@ const string RESET("\033[0m");
 // const string CYAN("\033[1;31m");
 // const string GREEN("\033[1;35m");
 // const string GOLD("\033[1;34m");
-// const string BLACK("\033[1;37m");
+const string BLACK("\033[1;37m");
 // const vector<string> COLORS = {RED, PURPLE, BLUE, CYAN, GREEN, GOLD, BLACK};
 
 // Color codes for darker mode terminals
