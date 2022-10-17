@@ -17,6 +17,11 @@
 // Shanon Reckinger
 // U. of Illinois, Chicago 
 
+// Milestone 5 Creative Component 
+// The Creative component that I have implemented allows the user to change the frame speed of the program allowing to either run the program faster or slower.
+// To run the create component please comment out line 53.
+// Then uncomment lines 55-57.
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -26,8 +31,10 @@ using namespace std;
 
 
 int main() {
-	
-	string filename = "cities.txt";
+	int frameSpeed = 50000;
+	string filename;
+	cout << "Enter filename: ";
+	cin >> filename;
 	ifstream inFile(filename);
 	string title;
 	getline(inFile, title);
@@ -37,12 +44,17 @@ int main() {
 	getline(inFile, source);
 
 	BarChartAnimate bca(title, xlabel, source);
-	
+
 	while (!inFile.eof()) {
 		bca.addFrame(inFile);
 	}
-	
+
+	// Comment out the line below
 	bca.animate(cout, 12, -1);
+	// Uncomment the lines below 55-57
+	// cout << "Enter a frame speed to run the program: ";
+	// cin >> frameSpeed;
+	// bca.animate(cout, 12, -1, frameSpeed);
 
     return 0;
 }

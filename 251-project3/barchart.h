@@ -1,12 +1,20 @@
 // barchart.h
-// TO DO:  add header comment here.  Also add function header comments below.
+// Program 3: Animated Bar Graph
+// Course: CS 251, Fall 2022. Thursday 12pm lab
+// System: Windows 10 PC using VS Code
+
+//Author: Alexander Bernatowicz
+//
+// The Animated Bar Graph Project reads an inputed file and print data from that file, updating on each frame.
+// For example on the cities.txt file the animation will print the most populous citites in the world for
+// every year from 1500-2018. Printing the most populous in order largest printing first. The barchart.h file
+// prints output all bars on a certain frame.
 
 #include <iostream>
 #include <algorithm>
 #include <map>
 #include "myrandom.h" // used in graders, do not remove
 #include "bar.h"
-#include <vector>
 
 using namespace std;
 

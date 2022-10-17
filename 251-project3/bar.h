@@ -1,11 +1,19 @@
 // bar.h
-// TO DO:  add header comment here.  Also add function header comments below.
+// Program 3: Animated Bar Graph
+// Course: CS 251, Fall 2022. Thursday 12pm lab
+// System: Windows 10 PC using VS Code
+
+//Author: Alexander Bernatowicz
+//
+// The Animated Bar Graph Project reads an inputed file and print data from that file, updating on each frame.
+// For example on the cities.txt file the animation will print the most populous citites in the world for
+// every year from 1500-2018. Printing the most populous in order largest printing first. The bar.h file sets
+// and stores input for an individual bar.
 
 #include <iostream>
 #include <string>
 #include "myrandom.h" // used in graders, do not remove
 using namespace std;
-//CHANGED
 //
 // Bar
 //

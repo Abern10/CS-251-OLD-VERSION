@@ -1,5 +1,14 @@
 // barchartanimate.h
-// TO DO:  add header comment here.  Also add function header comments below.
+// Program 3: Animated Bar Graph
+// Course: CS 251, Fall 2022. Thursday 12pm lab
+// System: Windows 10 PC using VS Code
+
+//Author: Alexander Bernatowicz
+//
+// The Animated Bar Graph Project reads an inputed file and print data from that file, updating on each frame.
+// For example on the cities.txt file the animation will print the most populous citites in the world for
+// every year from 1500-2018. Printing the most populous in order largest printing first. The barchart.h file
+// prints output all bars on a certain frame.
 
 #include <iostream>
 #include <fstream>
@@ -58,7 +67,7 @@ class BarChartAnimate {
             this->barcharts[size] = bc;
             this->size++;
     }
-
+    // function to parse each line in the file
     void readingEachLine(string line, string &year, string &name, string &country, string &category, int &value, BarChart &bc){
         stringstream ss(line);
         string temp;
@@ -69,7 +78,7 @@ class BarChartAnimate {
         getline(ss, category, ',');
 
         value = stoi(temp);
-
+        // creates bar with passed parameters
         bc.addBar(name, value, category);
         bc.setFrame(year);
 
@@ -81,12 +90,12 @@ class BarChartAnimate {
             colorIndex++;
         }
     }
-
+    // function to double capacity
     void addSize(){
         int doubledCapacity = capacity * 2;
         BarChart* newBC = new BarChart[doubledCapacity];
 
-        for(int i = 0; i < this->size; i++){
+        for(int i = 0; i < this->size; ++i){
             newBC[i] = barcharts[i];
         }
         delete[] barcharts;
@@ -125,15 +134,13 @@ class BarChartAnimate {
     // ourvector.h for how to double the capacity).
     // See application.cpp and handout for pre and post conditions.
     void addFrame(ifstream &file) {
-
         // checks to see if barCharts has run out of space, doubles if it has
         if(this->size == this->capacity){
             addSize();
         }
-        // if size of barCharts is still less then capacity
-        else{
-            ifSizeIsLessThanCapacity(file);
-        }
+        // if size of barCharts is less then capacity
+        ifSizeIsLessThanCapacity(file);
+        
     }
 
     // animate:
@@ -145,14 +152,37 @@ class BarChartAnimate {
     // in between each frame.
 	void animate(ostream &output, int top, int endIter) {
 		unsigned int microsecond = 50000;
-        int limit;
+        int stop ;
         if(endIter == -1){
             endIter == this->size;
         }
         else{
-            limit = endIter;
+            stop = endIter;
         }
-        for(int i = 0; i < limit; i++){
+        // prints all bars through each frame iteration and clears console of previous frame
+        for(int i = 0; i < stop; i++){
+            top = barcharts[i].getSize();
+            usleep(3 * microsecond);
+            output << CLEARCONSOLE;
+            output << BLACK << title << endl;
+            output << BLACK << source << endl;
+            barcharts[i].graph(output, colorMap, top);
+            output << BLACK << xlabel << endl;
+            output << BLACK << "Frame: " << barcharts[i].getFrame() << endl;
+        }
+	}
+
+    void animate(ostream &output, int top, int endIter, int frameRate){
+		unsigned int microsecond = frameRate;
+        int stop ;
+        if(endIter == -1){
+            endIter == this->size;
+        }
+        else{
+            stop = endIter;
+        }
+        // prints all bars through each frame iteration and clears console of previous frame
+        for(int i = 0; i < stop; i++){
             top = barcharts[i].getSize();
             usleep(3 * microsecond);
             output << CLEARCONSOLE;
