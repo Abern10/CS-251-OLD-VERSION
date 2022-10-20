@@ -33,11 +33,12 @@ public:
     // O(1)
     //
     priorityqueue() {
-        
-        
+        root = nullptr;
+        size = 0;
+        current = root;
         // TO DO: write this function.
         
-        
+
     }
     
     //
@@ -48,12 +49,15 @@ public:
     // O(n), where n is total number of nodes in custom BST
     //
     priorityqueue& operator=(const priorityqueue& other) {
-        
-        
+        if(this == &other){
+            return *this;
+        }
+        clear();
         // TO DO: write this function.
-        return *this;
         
-        
+        this->root = other->root;
+        this->size = other.size;
+        this->curr = other->curr;
     }
     
     //
@@ -63,11 +67,12 @@ public:
     // O(n), where n is total number of nodes in custom BST
     //
     void clear() {
-        
+        if(curr != nullptr){
+            delete[] curr;
+            clear();
+        }
         
         // TO DO: write this function.
-        
-        
     }
     
     //
@@ -92,12 +97,43 @@ public:
     // O(logn + m), where n is number of unique nodes in tree and m is number of
     // duplicate priorities
     //
+    // this is the insert fucntion
     void enqueue(T value, int priority) {
-        
-        
-        // TO DO: write this function.
-        
-        
+        NODE* previous = nullptr;
+        curr = root;
+
+        while(curr != nullptr){
+            // if value is equal to target, return
+            if(value == curr->value){
+                return;
+            }
+            // if value is less than target, go left
+            if(value < curr->value){
+                previous = curr;
+                curr = curr->left; // goes left
+            }
+            // if value is greater than target, go right
+            else{ 
+                previous = curr;
+                curr = curr->right; // goes right
+            }
+        }
+        // if value is not found then insert
+        NODE* j = new NODE();
+        j->value = value;
+        j->left = nullptr;
+        j->right = nullptr;
+
+        if(previous == nullptr){
+            root = j;
+        }
+        else if(value < previous->value){
+            previous->left = j;
+        }
+        else{
+            previous->right = j;
+        }
+        size++;
     }
     //
     // dequeue:
