@@ -127,7 +127,7 @@ public:
         if(previous == nullptr){
             root = j;
         }
-        else if(value < previous->value){
+        else if(priority < previous->priority){
             previous->left = j;
         }
         else{
