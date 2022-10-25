@@ -5,5 +5,7 @@
         "iosfwd": "cpp",
         "set": "cpp",
         "vector": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/googletest",
+    "cmake.configureSettings": { "gtest_build_samples": "ON" }
 }

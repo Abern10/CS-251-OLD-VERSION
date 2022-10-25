@@ -58,6 +58,7 @@ public:
         this->root = other->root;
         this->size = other.size;
         this->curr = other->curr;
+        return *this;
     }
     
     //
@@ -68,11 +69,18 @@ public:
     //
     void clear() {
         if(curr != nullptr){
-            delete[] curr;
-            clear();
+            if(curr->left != nullptr){
+                curr->left = nullptr;
+            }
+            if(curr->right != nullptr){
+                curr->right = nullptr;
+            }
         }
-        
-        // TO DO: write this function.
+        else{
+            root = nullptr;
+            return;
+        }
+        free(curr);
     }
     
     //
@@ -85,7 +93,7 @@ public:
         
         
         // TO DO: write this function.
-        
+        // might call clear
         
     }
     
@@ -100,26 +108,30 @@ public:
     // this is the insert fucntion
     void enqueue(T value, int priority) {
         NODE* previous = nullptr;
-        curr = root;
+        curr = root; // might not need
 
         while(curr != nullptr){
             // if value is equal to target, return
-            if(value == curr->value){
+            if(value == curr->priority){
+                curr->value = value;
                 return;
             }
             // if value is less than target, go left
-            if(value < curr->value){
+            if(value < curr->priority){
+                curr->value = value;
                 previous = curr;
                 curr = curr->left; // goes left
             }
             // if value is greater than target, go right
             else{ 
+                curr->value = value;
                 previous = curr;
                 curr = curr->right; // goes right
             }
         }
         // if value is not found then insert
         NODE* j = new NODE();
+        j->priority = priority
         j->value = value;
         j->left = nullptr;
         j->right = nullptr;
