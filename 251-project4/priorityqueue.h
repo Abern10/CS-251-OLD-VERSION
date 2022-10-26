@@ -130,7 +130,7 @@ public:
             }
         }
         // if value is not found then insert
-        if(dup == true){
+        if(current->dup == true){
             NODE* j = new NODE();
             j->priority = priority;
             j->value = value;
