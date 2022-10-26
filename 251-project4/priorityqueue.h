@@ -45,9 +45,10 @@ public:
             return;
         }
         else{
-            now->left;
-            cout << (now->priority) << endl;
-            now->right;
+            now = now->left;
+            cout << now->value << endl;
+            now = now->right;
+            cout << "working";
         }
     }
     
