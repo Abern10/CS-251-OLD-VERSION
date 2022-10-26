@@ -35,10 +35,20 @@ public:
     priorityqueue() {
         root = nullptr;
         size = 0;
-        current = root;
-        // TO DO: write this function.
-        
+        curr = nullptr;
+    }
 
+    void printInOrder(){
+        NODE* now = new NODE;
+        now = root;
+        if(curr == nullptr){
+            return;
+        }
+        else{
+            now->left;
+            cout << (now->priority) << endl;
+            now->right;
+        }
     }
     
     //
@@ -68,6 +78,8 @@ public:
     // O(n), where n is total number of nodes in custom BST
     //
     void clear() {
+        NODE* current = new NODE();
+        current = root;
         if(curr != nullptr){
             if(curr->left != nullptr){
                 curr->left = nullptr;
@@ -94,6 +106,7 @@ public:
         
         // TO DO: write this function.
         // might call clear
+        clear();
         
     }
     
@@ -108,30 +121,31 @@ public:
     // this is the insert fucntion
     void enqueue(T value, int priority) {
         NODE* previous = nullptr;
-        curr = root; // might not need
+        NODE* current = new NODE();
+        current = root;
 
-        while(curr != nullptr){
+        while(current != nullptr){
             // if value is equal to target, return
-            if(value == curr->priority){
-                curr->value = value;
+            if(priority == current->priority){
+                current->value = value;
                 return;
             }
             // if value is less than target, go left
-            if(value < curr->priority){
-                curr->value = value;
-                previous = curr;
-                curr = curr->left; // goes left
+            if(priority < current->priority){
+                current->value = value;
+                previous = current;
+                current = current->left; // goes left
             }
             // if value is greater than target, go right
             else{ 
-                curr->value = value;
-                previous = curr;
-                curr = curr->right; // goes right
+                current->value = value;
+                previous = current;
+                current = current->right; // goes right
             }
         }
         // if value is not found then insert
         NODE* j = new NODE();
-        j->priority = priority
+        j->priority = priority;
         j->value = value;
         j->left = nullptr;
         j->right = nullptr;
@@ -170,13 +184,9 @@ public:
     //
     // Returns the # of elements in the priority queue, 0 if empty.
     // O(1)
-    //
+    // 
     int Size() {
-        
-        
-        return 0; // TO DO: update this return
-        
-        
+        return size;
     }
     
     //
