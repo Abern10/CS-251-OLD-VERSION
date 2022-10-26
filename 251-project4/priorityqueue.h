@@ -37,20 +37,6 @@ public:
         size = 0;
         curr = nullptr;
     }
-
-    void printInOrder(){
-        NODE* now = new NODE;
-        now = root;
-        if(curr == nullptr){
-            return;
-        }
-        else{
-            now = now->left;
-            cout << now->value << endl;
-            now = now->right;
-            cout << "working";
-        }
-    }
     
     //
     // operator=
@@ -107,7 +93,7 @@ public:
         
         // TO DO: write this function.
         // might call clear
-        clear();
+        // clear();
         
     }
     
@@ -122,45 +108,58 @@ public:
     // this is the insert fucntion
     void enqueue(T value, int priority) {
         NODE* previous = nullptr;
-        NODE* current = new NODE();
-        current = root;
+        NODE* current = root;
 
         while(current != nullptr){
             // if value is equal to target, return
             if(priority == current->priority){
                 current->value = value;
-                return;
+                current->dup = true; // must add if condition for if dup is true
             }
             // if value is less than target, go left
             if(priority < current->priority){
-                current->value = value;
+                // current->value = value;
                 previous = current;
                 current = current->left; // goes left
             }
             // if value is greater than target, go right
             else{ 
-                current->value = value;
+                // current->value = value;
                 previous = current;
                 current = current->right; // goes right
             }
         }
         // if value is not found then insert
-        NODE* j = new NODE();
-        j->priority = priority;
-        j->value = value;
-        j->left = nullptr;
-        j->right = nullptr;
-
-        if(previous == nullptr){
-            root = j;
-        }
-        else if(priority < previous->priority){
-            previous->left = j;
+        if(dup == true){
+            NODE* j = new NODE();
+            j->priority = priority;
+            j->value = value;
+            j->dup = false;
+            j->left = nullptr;
+            j->right = nullptr;
+            j->link = nullptr;
         }
         else{
-            previous->right = j;
+            NODE* n = new NODE();
+            n->priority = priority;
+            n->value = value;
+            n->dup = false;
+            n->left = nullptr;
+            n->right = nullptr;
+            n->link = nullptr;
+            n->parent = nullptr
+
+            if(previous == nullptr){
+                root = n;
+            }
+            else if(priority < previous->priority){
+                previous->left = n;
+            }
+            else{
+                previous->right = n;
+            }
+            size++;
         }
-        size++;
     }
     //
     // dequeue:
