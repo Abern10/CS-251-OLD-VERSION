@@ -37,19 +37,6 @@ public:
         size = 0;
         curr = nullptr;
     }
-
-    void printInOrder(){
-        NODE* now = new NODE;
-        now = root;
-        if(curr == nullptr){
-            return;
-        }
-        else{
-            now->left;
-            cout << (now->priority) << endl;
-            now->right;
-        }
-    }
     
     //
     // operator=
@@ -78,6 +65,7 @@ public:
     // O(n), where n is total number of nodes in custom BST
     //
     void clear() {
+        //CHANGE
         NODE* current = new NODE();
         current = root;
         if(curr != nullptr){
@@ -142,16 +130,28 @@ public:
                 current = current->right; // goes right
             }
         }
-        // if value is not found then insert
+        // if there is a duplicate
         if(current->dup == true){
             NODE* j = new NODE();
             j->priority = priority;
             j->value = value;
-            j->dup = false;
             j->left = nullptr;
             j->right = nullptr;
-            j->link = nullptr;
+            j->dup = true;
+
+            if(previous->link = nullptr){
+                previous->link = j
+                j->link = nullptr;
+            }
+            else{
+                while(previous->link != nullptr){
+                    previous = previous->link;
+                }
+                previous->link = j;
+                j->link = nullptr;
+            }
         }
+        // if value is not found then insert
         else{
             NODE* n = new NODE();
             n->priority = priority;
