@@ -108,70 +108,66 @@ public:
     //
     // this is the insert fucntion
     void enqueue(T value, int priority) {
-        cout << "hello";
         NODE* previous = nullptr;
         NODE* current = root;
 
+        // loop through the BST
         while(current != nullptr){
-            // if value is equal to target, return
+            // if priorities are equal
             if(priority == current->priority){
-                // current->value = value;
-                current->dup = true; // must add if condition for if dup is true
+                current->dup = true;
+                if(current->dup == true){
+                    NODE* dupNode = new NODE();
+                    dupNode->priority = priority;
+                    dupNode->value = value;
+                    dupNode->left = nullptr;
+                    dupNode->right = nullptr;
+                    dupNode->dup = true;
+
+                    if(previous->link == nullptr){
+                        previous->link = dupNode;
+                        dupNode->link = nullptr;
+                    }
+                    else{
+                        while(previous->link != nullptr){
+                            previous = previous->link;
+                        }
+                        previous->link = dupNode;
+                        dupNode->link = nullptr;
+                    }
+                }
+                size++;
+                return;
             }
-            // if value is less than target, go left
+            // if input priority is less than current priority, go left
             else if(priority < current->priority){
-                // current->value = value;
                 previous = current;
                 current = current->left; // goes left
             }
-            // if value is greater than target, go right
-            else{ 
-                // current->value = value;
+            // if input priority is greater than current priority, go right
+            else{
                 previous = current;
-                current = current->right; // goes right
+                current = current->right;
             }
         }
-        // if there is a duplicate
-        if(current->dup == true){
-            NODE* j = new NODE();
-            j->priority = priority;
-            j->value = value;
-            j->left = nullptr;
-            j->right = nullptr;
-            j->dup = true;
-
-            if(previous->link == nullptr){
-                previous->link = j;
-                j->link = nullptr;
-            }
-            else{
-                while(previous->link != nullptr){
-                    previous = previous->link;
-                }
-                previous->link = j;
-                j->link = nullptr;
-            }
+        // if current stil equals a nullptr at the end of the BST insert new node
+        NODE* newNode = new NODE;
+        newNode->priority = priority;
+        newNode->value = value;
+        newNode->dup = false;
+        newNode->left = nullptr;
+        newNode->right = nullptr;
+        newNode->link = nullptr;
+        newNode->parent = nullptr;
+        
+        if(previous == nullptr){
+            root = newNode;
         }
-        // if value is not found then insert
+        else if(priority < previous->priority){
+            previous->left = newNode;
+        }
         else{
-            NODE* n = new NODE();
-            n->priority = priority;
-            n->value = value;
-            n->dup = false;
-            n->left = nullptr;
-            n->right = nullptr;
-            n->link = nullptr;
-            n->parent = nullptr;
-
-            if(previous == nullptr){
-                root = n;
-            }
-            else if(priority < previous->priority){
-                previous->left = n;
-            }
-            else{
-                previous->right = n;
-            }
+            previous->right = newNode;
         }
         size++;
     }
