@@ -46,7 +46,11 @@ public:
     // O(n), where n is total number of nodes in custom BST
     //
     priorityqueue& operator=(const priorityqueue& other) {
-        
+        this->clear();
+
+        // pre-order traversal
+        // in pre order traversal you would have the current valu and priority call enqueue in traversal
+
     }
     
     //
@@ -55,14 +59,15 @@ public:
     // Frees the memory associated with the priority queue but is public.
     // O(n), where n is total number of nodes in custom BST
     //
-    void clearRecursiveHelperFunction(NODE* node){
-        if(node == nullptr){
+    // clear recursive helper function
+    void _clear(NODE* node){
+        if(node == nullptr){ // base case if BST is empty
             return;
         }
-        else{
-            clearRecursiveHelperFunction(node->left);
-            clearRecursiveHelperFunction(node->right);
-            if(node->dup == true){
+        else{ // traverses the BST using post-order
+            _clear(node->left);
+            _clear(node->right);
+            if(node->dup == true){ // checks for duplicates
                 while(node->link != nullptr){
                     NODE* nextNode = node->link;
                     delete node;
@@ -74,7 +79,7 @@ public:
     }
 
     void clear(){
-        clearRecursiveHelperFunction(root);
+        _clear(root);
         root = nullptr;
         curr = nullptr;
         size = 0;
@@ -242,15 +247,25 @@ public:
         
     }
 
-    void toStringRecursiveHelperFunction(NODE* node, ostream& output){
-        if (node == nullptr){
+        //
+    // toString:
+    //
+    // Returns a string of the entire priority queue, in order.  Format:
+    // "1 value: Ben
+    //  2 value: Jen
+    //  2 value: Sven
+    //  3 value: Gwen"
+    //
+    // to string recursive helper function
+    void _toString(NODE* node, ostream& output){
+        if (node == nullptr){ // BST base case to check if BST is empty
             return;
         }
-        else{
-            toStringRecursiveHelperFunction(node->left, output); // recursive function call for left side of BST
+        else{ // uses in-order traversal through the BST
+            _toString(node->left, output); // recursive function call for left side of BST
             output << node->priority << " value: " << node->value << endl; // outputs the value of each node
 
-            if(node->dup == true){ // check for links
+            if(node->dup == true){ // check for duplicates
                 NODE* placeholderNode = node;
                 // output << "duplicate case: " << node->priority << " value: " << node->value << endl; // outputs the value of each node
                 while(node->link != nullptr){
@@ -260,23 +275,14 @@ public:
                 }
                 node = placeholderNode;
             }
-            toStringRecursiveHelperFunction(node->right, output); // recursive function call for right side of BST
+            _toString(node->right, output); // recursive function call for right side of BST
         }
     }
     
-    //
-    // toString:
-    //
-    // Returns a string of the entire priority queue, in order.  Format:
-    // "1 value: Ben
-    //  2 value: Jen
-    //  2 value: Sven
-    //  3 value: Gwen"
-    //
     string toString() {
         stringstream ss;
         // call helper fucntion
-        toStringRecursiveHelperFunction(curr, ss);
+        _toString(curr, ss);
         curr = root;
         return ss.str(); // TO DO: update this return
     }
