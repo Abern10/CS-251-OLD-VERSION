@@ -1,8 +1,9 @@
-
+// #include <gtest/gtest.h>
 #include "priorityqueue.h"
 #include <map>
 #include <vector>
 #include <iostream>
+
 // TEST(priorityqueue, one) {
 //     map<int, vector<int> > map;
 // int n = 9;
@@ -98,7 +99,82 @@ void testToStringFunction1(){
         pq.enqueue(vals[i], prs[i]);
         map[prs[i]].push_back(vals[i]);
     }
-    cout << pq.toString();
+    cout << pq.toString() << endl;
+}
+
+void testToStringFunction2(){
+    map<int, vector<int> > map;
+    int n = 7;
+    int vals[] = {15, 20, 17, 1, 2, 200, 75};
+    int prs[] = {1, 2, 3, 2, 1, 4, 6};
+    priorityqueue<int> pq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+    cout << pq.toString() << endl;
+
+}
+
+void testToStringFunction3(){
+    map<int, vector<int> > map;
+    int n = 10;
+    int vals[] = {15, 20, 17, 1, 2, 200, 75, 54, 23, 10};
+    int prs[] = {1, 2, 3, 2, 1, 4, 6, 2, 3, 4};
+    priorityqueue<int> pq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+    cout << pq.toString() << endl;
+
+}
+
+void testClearFunction1(){
+    map<int, vector<int> > map;
+    int n = 3;
+    int vals[] = {15, 20, 17};
+    int prs[] = {1, 2, 3};
+    priorityqueue<int> pq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+    pq.clear();
+    cout << pq.Size() << endl;
+}
+
+void testClearFunction2(){
+    map<int, vector<int> > map;
+    int n = 7;
+    int vals[] = {15, 20, 17, 11, 10, 200, 76};
+    int prs[] = {1, 2, 3, 2, 3, 2, 4};
+    priorityqueue<int> pq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+    pq.clear();
+    cout << pq.Size() << endl;
+}
+
+void testClearFunction3(){
+    map<int, vector<int> > map;
+    int n = 7;
+    int vals[] = {15, 20, 17, 14, 13, 200, 76};
+    int prs[] = {1, 2, 3, 1, 3, 2, 4};
+    priorityqueue<int> pq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+    pq.clear();
+    cout << pq.Size() << endl;
 }
 
 // TO DO: write lots of tests here.
@@ -107,5 +183,10 @@ int main(){
     testEnqueueFunction2();
     testEnqueueFunction3();
     testToStringFunction1();
+    testToStringFunction2();
+    testToStringFunction3();
+    testClearFunction1();
+    testClearFunction2();
+    testClearFunction3();
 }
 
