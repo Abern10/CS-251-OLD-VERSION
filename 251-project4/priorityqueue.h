@@ -180,7 +180,7 @@ public:
     // duplicate priorities
     //
     T dequeue() {
-        
+        // keep going left until it hits null
         
         // TO DO: write this function.
         T valueOut;
@@ -252,6 +252,19 @@ public:
         
         
     }
+
+    void toStringRecursiveHelperFunction(NODE* node, ostream& output){
+        if (node == nullptr){
+            return;
+        }
+        else{
+            toStringRecursiveHelperFunction(curr->left, output);
+            output << 
+            // check for links
+            
+            toStringRecursiveHelperFunction(curr->right, output)
+        }
+    }
     
     //
     // toString:
@@ -263,13 +276,11 @@ public:
     //  3 value: Gwen"
     //
     string toString() {
-        
-        
-        // TO DO: write this function.
-        string str = "";
-        return str; // TO DO: update this return
-        
-        
+        stringstream ss;
+        // call helper fucntion
+        toStringRecursiveHelperFunction(curr, ss)
+        curr = root;
+        return ss.str(); // TO DO: update this return
     }
     
     //
