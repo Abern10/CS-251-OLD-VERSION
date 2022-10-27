@@ -2,7 +2,7 @@
 #include "priorityqueue.h"
 #include <map>
 #include <vector>
-
+#include <iostream>
 // TEST(priorityqueue, one) {
 //     map<int, vector<int> > map;
 // int n = 9;
@@ -27,7 +27,10 @@
 
 // TO DO: write lots of tests here.
 int main(){
+    cout << "hello2";
     map<int, vector<int> > map;
+
+    
 
     int n = 9;
     int vals[] = {15, 16, 17, 6, 7, 8, 9, 2, 1};
@@ -41,7 +44,7 @@ int main(){
 
     cout << pq.Size() << endl;
 
-    cout << "hello";
+    
 
 }
 

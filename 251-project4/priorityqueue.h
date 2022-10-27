@@ -108,6 +108,7 @@ public:
     //
     // this is the insert fucntion
     void enqueue(T value, int priority) {
+        cout << "hello";
         NODE* previous = nullptr;
         NODE* current = root;
 
@@ -139,7 +140,7 @@ public:
             j->right = nullptr;
             j->dup = true;
 
-            if(previous->link = nullptr){
+            if(previous->link == nullptr){
                 previous->link = j;
                 j->link = nullptr;
             }
