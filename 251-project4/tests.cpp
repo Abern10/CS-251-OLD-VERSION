@@ -49,13 +49,13 @@ void testEnqueueFucntion1(){
 void testEnqueueFunction2(){
     map<int, vector<string> > map;
     int n = 6;
-    string vals[] = {"Alex", "Iza", "Daniel", "Monica", "Marta", "Staszek"};
+    string names[] = {"Alex", "Iza", "Daniel", "Monica", "Marta", "Staszek"};
     int prs[] = {1, 2, 3, 2, 4, 2};
     priorityqueue<string> pq;
 
     for (int i = 0; i < n; i++) {
-        pq.enqueue(vals[i], prs[i]);
-        map[prs[i]].push_back(vals[i]);
+        pq.enqueue(names[i], prs[i]);
+        map[prs[i]].push_back(names[i]);
     }
 
     if(pq.Size() != 6){
@@ -66,10 +66,46 @@ void testEnqueueFunction2(){
     }
 }
 
+void testEnqueueFunction3(){
+    map<int, vector<string> > map;
+    int n = 4;
+    string names[] = {"Alex", "Pedro", "Adam", "Iza"};
+    int prs[] = {2, 1, 2, 2};
+    priorityqueue<string> pq;
+
+    for(int i = 0; i < n; i++){
+        pq.enqueue(names[i], prs[i]);
+        map[prs[i]].push_back(names[i]);
+    }
+
+    if(pq.Size() != 4){
+        cout << "Enqueue Function Test 3 Failed!" << endl;
+    }
+    else if(pq.Size() == 4){
+        cout << "Enqueue Function Test 3 Passed!" << endl;
+    }
+}
+
+
+void testToStringFunction1(){
+    map<int, vector<int> > map;
+    int n = 4;
+    int vals[] = {15, 20, 17, 1};
+    int prs[] = {1, 2, 3, 2};
+    priorityqueue<int> pq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+    cout << pq.toString();
+}
+
 // TO DO: write lots of tests here.
 int main(){
-
     testEnqueueFucntion1();
     testEnqueueFunction2();
+    testEnqueueFunction3();
+    testToStringFunction1();
 }
 

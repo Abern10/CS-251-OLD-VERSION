@@ -64,23 +64,29 @@ public:
     // Frees the memory associated with the priority queue but is public.
     // O(n), where n is total number of nodes in custom BST
     //
-    void clear() {
-        //CHANGE
-        NODE* current = new NODE();
-        current = root;
-        if(curr != nullptr){
-            if(curr->left != nullptr){
-                curr->left = nullptr;
-            }
-            if(curr->right != nullptr){
-                curr->right = nullptr;
-            }
-        }
-        else{
-            root = nullptr;
+    void clearRecursiveHelperFunction(NODE* node){
+        if(node == nullptr){
             return;
         }
-        free(curr);
+        else{
+            clearRecursiveHelperFunction(node->left);
+            clearRecursiveHelperFunction(node->right);
+            if(node->dup == true){
+                while(node != nullptr){
+                    NODE* nextNode = node->link;
+                    delete node;
+                    node = nextNode;
+                }
+            }
+        }
+        delete node;
+    }
+
+    void clear(){
+        clearRecursiveHelperFunction(root);
+        root = nullptr;
+        curr = nullptr;
+        size = 0;
     }
     
     //
@@ -108,67 +114,122 @@ public:
     //
     // this is the insert fucntion
     void enqueue(T value, int priority) {
-        NODE* previous = nullptr;
+        // NODE* previous = nullptr;
+        // NODE* current = root;
+
+        // // loop through the BST
+        // while(current != nullptr){
+        //     // if priorities are equal
+        //     if(priority == current->priority){
+        //         current->dup = true;
+        //         if(current->dup == true){
+        //             NODE* dupNode = new NODE();
+        //             dupNode->priority = priority;
+        //             dupNode->value = value;
+        //             dupNode->left = nullptr;
+        //             dupNode->right = nullptr;
+        //             dupNode->dup = true;
+
+        //             if(previous->link == nullptr){
+        //                 previous->link = dupNode;
+        //                 dupNode->link = nullptr;
+        //             }
+        //             else{
+        //                 while(previous->link != nullptr){
+        //                     previous = previous->link;
+        //                 }
+        //                 previous->link = dupNode;
+        //                 dupNode->link = nullptr;
+        //             }
+        //         }
+        //         size++;
+        //         return;
+        //     }
+        //     // if input priority is less than current priority, go left
+        //     else if(priority < current->priority){
+        //         previous = current;
+        //         current = current->left; // goes left
+        //     }
+        //     // if input priority is greater than current priority, go right
+        //     else{
+        //         previous = current;
+        //         current = current->right;
+        //     }
+        // }
+        // // if current stil equals a nullptr at the end of the BST insert new node
+        // NODE* newNode = new NODE;
+        // newNode->priority = priority;
+        // newNode->value = value;
+        // newNode->dup = false;
+        // newNode->left = nullptr;
+        // newNode->right = nullptr;
+        // newNode->link = nullptr;
+        // newNode->parent = nullptr;
+        
+        // if(previous == nullptr){
+        //     root = newNode;
+        // }
+        // else if(priority < previous->priority){
+        //     previous->left = newNode;
+        // }
+        // else{
+        //     previous->right = newNode;
+        // }
+        // size++;
+
         NODE* current = root;
-
-        // loop through the BST
-        while(current != nullptr){
-            // if priorities are equal
-            if(priority == current->priority){
-                current->dup = true;
-                if(current->dup == true){
-                    NODE* dupNode = new NODE();
-                    dupNode->priority = priority;
-                    dupNode->value = value;
-                    dupNode->left = nullptr;
-                    dupNode->right = nullptr;
-                    dupNode->dup = true;
-
-                    if(previous->link == nullptr){
-                        previous->link = dupNode;
-                        dupNode->link = nullptr;
-                    }
-                    else{
-                        while(previous->link != nullptr){
-                            previous = previous->link;
-                        }
-                        previous->link = dupNode;
-                        dupNode->link = nullptr;
-                    }
-                }
-                size++;
-                return;
-            }
-            // if input priority is less than current priority, go left
-            else if(priority < current->priority){
-                previous = current;
-                current = current->left; // goes left
-            }
-            // if input priority is greater than current priority, go right
-            else{
-                previous = current;
-                current = current->right;
-            }
-        }
-        // if current stil equals a nullptr at the end of the BST insert new node
         NODE* newNode = new NODE;
         newNode->priority = priority;
         newNode->value = value;
-        newNode->dup = false;
         newNode->left = nullptr;
         newNode->right = nullptr;
-        newNode->link = nullptr;
         newNode->parent = nullptr;
-        
-        if(previous == nullptr){
+        newNode->link = nullptr;
+
+        if(current == nullptr){ // traversing BST base case if BST is empty
             root = newNode;
         }
-        else if(priority < previous->priority){
-            previous->left = newNode;
+        else{ // traversing BST if BST is not empty
+            NODE* previous = new NODE;
+
+            while(current != nullptr){ // while loop to traverse BST
+                previous = current;
+                if(priority == current->priority){ // if input priority is equal to current priority set duplicate to true
+                    newNode->dup = true;
+                    previous = current;
+                    break;
+                }
+                if(priority < current->priority){ // if input priority is less than current priority, go left to continue search
+                    current = current->left; // goes left
+                }
+                else if(priority > current->priority){ // if input priority is greater than current priority, go right to continue search
+                    current = current->right; // goes right
+                }
+            }
+            if(newNode->dup == true){ // if input priority is a duplicate
+                previous->dup = true;
+                if(previous->link == nullptr){ // if no duplicate is already made create new duplicate
+                    previous->link = newNode;
+                }
+                else{
+                    while(previous->link != nullptr){ // if duplicate is already in BST loop to end of linked list
+                        previous = previous->link;
+                    }
+                    previous->link = newNode;
+                    newNode->link = nullptr;
+                    newNode->parent = previous;
+                }
+            } // if current was still a nullptr loop through BST again to insert new node
+            else if(priority < previous->priority){ // if input priority is less than current priority, go left
+                previous->left = newNode; // inserts new node
+                newNode->parent = previous;
+            }
+            else if(priority > previous->priority){ // if input priority is greater than current priority, go right
+                previous->right = newNode; // inserts new node
+                newNode->parent = previous;
+            }
         }
-        else{
-            previous->right = newNode;
-        }
+        curr = root;
         size++;
     }
     //
@@ -258,11 +319,20 @@ public:
             return;
         }
         else{
-            toStringRecursiveHelperFunction(curr->left, output);
-            output << 
-            // check for links
-            
-            toStringRecursiveHelperFunction(curr->right, output)
+            toStringRecursiveHelperFunction(node->left, output); // recursive function call for left side of BST
+            output << node->priority << " value: " << node->value << endl; // outputs the value of each node
+
+            if(node->dup == true){ // check for links
+                NODE* placeholderNode = node;
+                // output << "duplicate case: " << node->priority << " value: " << node->value << endl; // outputs the value of each node
+                while(node->link != nullptr){
+                    NODE* nextNode = node->link;
+                    output << nextNode->priority << " value: " << nextNode->value << endl;
+                    node = nextNode;
+                }
+                node = placeholderNode;
+            }
+            toStringRecursiveHelperFunction(node->right, output); // recursive function call for right side of BST
         }
     }
     
@@ -278,7 +348,7 @@ public:
     string toString() {
         stringstream ss;
         // call helper fucntion
-        toStringRecursiveHelperFunction(curr, ss)
+        toStringRecursiveHelperFunction(curr, ss);
         curr = root;
         return ss.str(); // TO DO: update this return
     }
