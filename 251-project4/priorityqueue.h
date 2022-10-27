@@ -114,11 +114,11 @@ public:
         while(current != nullptr){
             // if value is equal to target, return
             if(priority == current->priority){
-                current->value = value;
+                // current->value = value;
                 current->dup = true; // must add if condition for if dup is true
             }
             // if value is less than target, go left
-            if(priority < current->priority){
+            else if(priority < current->priority){
                 // current->value = value;
                 previous = current;
                 current = current->left; // goes left
@@ -140,7 +140,7 @@ public:
             j->dup = true;
 
             if(previous->link = nullptr){
-                previous->link = j
+                previous->link = j;
                 j->link = nullptr;
             }
             else{
@@ -160,7 +160,7 @@ public:
             n->left = nullptr;
             n->right = nullptr;
             n->link = nullptr;
-            n->parent = nullptr
+            n->parent = nullptr;
 
             if(previous == nullptr){
                 root = n;
@@ -171,8 +171,8 @@ public:
             else{
                 previous->right = n;
             }
-            size++;
         }
+        size++;
     }
     //
     // dequeue:
