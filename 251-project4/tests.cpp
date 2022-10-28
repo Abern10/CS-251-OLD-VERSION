@@ -177,16 +177,37 @@ void testClearFunction3(){
     cout << pq.Size() << endl;
 }
 
+void testEqualOperator(){
+    map<int, vector<int> > map;
+    int n = 7;
+    int vals[] = {15, 20, 17, 14, 13, 200, 76};
+    int prs[] = {1, 2, 3, 1, 3, 2, 4};
+    priorityqueue<int> pq;
+    priorityqueue<int> dq;
+
+    for (int i = 0; i < n; i++) {
+        pq.enqueue(vals[i], prs[i]);
+        map[prs[i]].push_back(vals[i]);
+    }
+
+    dq = pq;
+
+    cout << dq.toString();
+}
+
+
+
 // TO DO: write lots of tests here.
 int main(){
-    testEnqueueFucntion1();
-    testEnqueueFunction2();
-    testEnqueueFunction3();
-    testToStringFunction1();
-    testToStringFunction2();
-    testToStringFunction3();
-    testClearFunction1();
-    testClearFunction2();
-    testClearFunction3();
+    // testEnqueueFucntion1();
+    // testEnqueueFunction2();
+    // testEnqueueFunction3();
+    // testToStringFunction1();
+    // testToStringFunction2();
+    // testToStringFunction3();
+    // testClearFunction1();
+    // testClearFunction2();
+    // testClearFunction3();
+    testEqualOperator();
 }
 

@@ -24,6 +24,60 @@ private:
     NODE* root;  // pointer to root node of the BST
     int size;  // # of elements in the pqueue
     NODE* curr;  // pointer to next item in pqueue (see begin and next)
+
+    // clear recursive helper function
+    void _clear(NODE* node){
+        if(node == nullptr){ // base case if BST is empty
+            return;
+        }
+        else{ // traverses the BST using post-order
+            _clear(node->left);
+            _clear(node->right);
+            if(node->dup == true){ // checks for duplicates
+                while(node->link != nullptr){
+                    NODE* nextNode = node->link;
+                    delete node;
+                    node = nextNode;
+                }
+            }
+        }
+        delete node;
+    }
+
+     // to string recursive helper function
+    void _toString(NODE* node, ostream& output){
+        if (node == nullptr){ // BST base case to check if BST is empty
+            return;
+        }
+        else{ // uses in-order traversal through the BST
+            _toString(node->left, output); // recursive function call for left side of BST
+            output << node->priority << " value: " << node->value << endl; // outputs the value of each node
+
+            if(node->dup == true){ // check for duplicates
+                NODE* placeholderNode = node;
+                // output << "duplicate case: " << node->priority << " value: " << node->value << endl; // outputs the value of each node
+                while(node->link != nullptr){
+                    NODE* nextNode = node->link;
+                    output << nextNode->priority << " value: " << nextNode->value << endl;
+                    node = nextNode;
+                }
+                node = placeholderNode;
+            }
+            _toString(node->right, output); // recursive function call for right side of BST
+        }
+    }
+
+    // equal operator recursive helper function
+    void _equalOperator(NODE* node){
+        if(node == nullptr){ // BST base case to check if BST is empty
+            return;
+        }
+        this->enqueue(node->value, node->priority); // calling enqueue function to inset nodes
+        // pre-order traversal
+        _equalOperator(node->left); // copies left side of BST
+        _equalOperator(node->right); // copies right sise of BST
+        _equalOperator(node->link); // copies the duplicates in the BST
+    }
     
 public:
     //
@@ -45,12 +99,11 @@ public:
     // Sets all member variables appropriately.
     // O(n), where n is total number of nodes in custom BST
     //
+
     priorityqueue& operator=(const priorityqueue& other) {
-        this->clear();
-
-        // pre-order traversal
-        // in pre order traversal you would have the current valu and priority call enqueue in traversal
-
+        this->clear(); // clears the inputted BST
+        _equalOperator(other.root); // calls the recursive helper function
+        return *this;
     }
     
     //
@@ -59,24 +112,6 @@ public:
     // Frees the memory associated with the priority queue but is public.
     // O(n), where n is total number of nodes in custom BST
     //
-    // clear recursive helper function
-    void _clear(NODE* node){
-        if(node == nullptr){ // base case if BST is empty
-            return;
-        }
-        else{ // traverses the BST using post-order
-            _clear(node->left);
-            _clear(node->right);
-            if(node->dup == true){ // checks for duplicates
-                while(node->link != nullptr){
-                    NODE* nextNode = node->link;
-                    delete node;
-                    node = nextNode;
-                }
-            }
-        }
-        delete node;
-    }
 
     void clear(){
         _clear(root);
@@ -209,12 +244,10 @@ public:
     //      cout << priority << " value: " << value << endl;
     //    }
     //    cout << priority << " value: " << value << endl;
-    void begin() {
-        
-        
-        // TO DO: write this function.
-        
-        
+    void begin(){
+        while(curr != nullptr){
+            curr = curr->left;
+        }
     }
     
     //
@@ -238,8 +271,21 @@ public:
     //    }
     //    cout << priority << " value: " << value << endl;
     //
+    void _next(NODE* node, T& value, int &priority){
+        if(node == nullptr){
+            return;
+        }
+        else{
+            _next(node->left, value, priority);
+            cout << node->value << " " << node->priority
+            _next(node->right, value, priority);
+        }
+    }
+
     bool next(T& value, int &priority) {
-        
+        value = curr->value;
+        priorioty = curr->priority;
+        _next(curr, value, priority);
         
         // TO DO: write this function.
         return true; // TO DO: update this return
@@ -256,28 +302,6 @@ public:
     //  2 value: Sven
     //  3 value: Gwen"
     //
-    // to string recursive helper function
-    void _toString(NODE* node, ostream& output){
-        if (node == nullptr){ // BST base case to check if BST is empty
-            return;
-        }
-        else{ // uses in-order traversal through the BST
-            _toString(node->left, output); // recursive function call for left side of BST
-            output << node->priority << " value: " << node->value << endl; // outputs the value of each node
-
-            if(node->dup == true){ // check for duplicates
-                NODE* placeholderNode = node;
-                // output << "duplicate case: " << node->priority << " value: " << node->value << endl; // outputs the value of each node
-                while(node->link != nullptr){
-                    NODE* nextNode = node->link;
-                    output << nextNode->priority << " value: " << nextNode->value << endl;
-                    node = nextNode;
-                }
-                node = placeholderNode;
-            }
-            _toString(node->right, output); // recursive function call for right side of BST
-        }
-    }
     
     string toString() {
         stringstream ss;
@@ -296,13 +320,13 @@ public:
     // duplicate priorities
     //
     T peek() {
-        
-        
-        // TO DO: write this function.
         T valueOut;
-        return valueOut; // TO DO: update this return
-        
-        
+        Node* node = root;
+        while(node != nullptr){
+            node = node->left;
+        }
+        valueOut = node->value;
+        return valueOut; 
     }
     
     //
