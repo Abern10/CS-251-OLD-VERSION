@@ -1,6 +1,11 @@
 // priorityqueue.h
+// Program 4: Priority Queue
+// Course: CS 251, Fall 2022. Thursday 12pm lab
+// System: 2020 Macbook Pro using VS Code
+
+//Author: Alexander Bernatowicz
 //
-// TODO:  write this header comment
+// The objective of this program is to use a Binary Search Tree to create a Priority Queue and implenting a linked list for duplicate nodes. The priority queue stores values and inserts them into the tree based on the priority of the value.
 #pragma once
 
 #include <iostream>
@@ -25,6 +30,27 @@ private:
     int size;  // # of elements in the pqueue
     NODE* curr;  // pointer to next item in pqueue (see begin and next)
 
+    // equality operator recursive helper function
+    bool _equalityOperator(NODE* myCur, NODE* otherCur) const {
+        if(myCur == nullptr && otherCur == nullptr){ // if both BSTS are empty
+            return true;
+        }
+        else if(myCur == nullptr && otherCur != nullptr){ // if the first BST is empty but the second does not
+            return false;
+        }
+        else if(otherCur == nullptr && myCur != nullptr){ // if the first BST is not empty but the second is empty
+            return false;
+        }
+        else{ // recursive function call checking is everything is the same using pre-order traversal
+            if(_equalityOperator(myCur->link, otherCur->link) && _equalityOperator(myCur->left, otherCur->left) && myCur->value == otherCur->value && myCur->priority == otherCur->priority && _equalityOperator(myCur->right, otherCur->right)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
     // clear recursive helper function
     void _clear(NODE* node){
         if(node == nullptr){ // base case if BST is empty
@@ -44,7 +70,7 @@ private:
         delete node;
     }
 
-     // to string recursive helper function
+    // to string recursive helper function
     void _toString(NODE* node, ostream& output){
         if (node == nullptr){ // BST base case to check if BST is empty
             return;
@@ -99,7 +125,6 @@ public:
     // Sets all member variables appropriately.
     // O(n), where n is total number of nodes in custom BST
     //
-
     priorityqueue& operator=(const priorityqueue& other) {
         this->clear(); // clears the inputted BST
         _equalOperator(other.root); // calls the recursive helper function
@@ -112,7 +137,6 @@ public:
     // Frees the memory associated with the priority queue but is public.
     // O(n), where n is total number of nodes in custom BST
     //
-
     void clear(){
         _clear(root);
         root = nullptr;
@@ -271,29 +295,46 @@ public:
     //    }
     //    cout << priority << " value: " << value << endl;
     //
-    void _next(NODE* node, T& value, int &priority){
-        if(node == nullptr){
-            return;
+    bool next(T& value, int &priority){
+        if(curr == nullptr){
+            return false;
+        }
+        NODE* pervious = root;
+
+        value = curr->value;
+        priority = curr->priority;  
+
+        
+        if(curr->link != nullptr){
+            curr = curr->link;
+            return true;
+        }
+
+        if(curr->dup == true && curr->link == nullptr){
+            NODE* tempNode = root;
+            while(tempNode != nullptr){
+
+            }
+
+            // at the end of the condition ur curr need 
+            // to be at first node
+        }
+
+        if(curr->right){
+            curr = curr->right;
+            while(curr != nullptr){
+                curr = curr->left;
+            }
         }
         else{
-            _next(node->left, value, priority);
-            cout << node->value << " " << node->priority
-            _next(node->right, value, priority);
+
         }
-    }
 
-    bool next(T& value, int &priority) {
-        value = curr->value;
-        priorioty = curr->priority;
-        _next(curr, value, priority);
-        
-        // TO DO: write this function.
-        return true; // TO DO: update this return
-        
-        
-    }
+        // go to left and go to right
 
-        //
+        return true; // TO DO: update this return 
+    }
+    //
     // toString:
     //
     // Returns a string of the entire priority queue, in order.  Format:
@@ -302,13 +343,12 @@ public:
     //  2 value: Sven
     //  3 value: Gwen"
     //
-    
     string toString() {
         stringstream ss;
-        // call helper fucntion
-        _toString(curr, ss);
+        
+        _toString(curr, ss); // calls recursive helper fucntion
         curr = root;
-        return ss.str(); // TO DO: update this return
+        return ss.str(); 
     }
     
     //
@@ -321,14 +361,13 @@ public:
     //
     T peek() {
         T valueOut;
-        Node* node = root;
+        NODE* node = root;
         while(node != nullptr){
             node = node->left;
         }
         valueOut = node->value;
         return valueOut; 
     }
-    
     //
     // ==operator
     //
@@ -336,15 +375,13 @@ public:
     // other.  Otherwise returns false.
     // O(n), where n is total number of nodes in custom BST
     //
+
     bool operator==(const priorityqueue& other) const {
-        
-        
-        // TO DO: write this function.
-        return true; // TO DO: update this return
-        
-        
+        if(this->size != other.size){ // checks if size is the same
+            return false;
+        }
+        return _equalityOperator(this->root, other.root); // calls recursive helper function
     }
-    
     //
     // getRoot - Do not edit/change!
     //
