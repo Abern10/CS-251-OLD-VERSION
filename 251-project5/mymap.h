@@ -76,11 +76,8 @@ class mymap {
     // Time complexity: O(1)
     //
     mymap() {
-
-
-        // TODO: write this function.
-
-
+        root = nullptr;
+        size = 0;
     }
 
     //
@@ -156,11 +153,18 @@ class mymap {
     // Space complexity: O(1)
     //
     void put(keyType key, valueType value) {
+        NODE* current = root;
+        NODE* newNode = new NODE;
+        
+        newNode->key = key;
+        newNode->value = value;
+        newNode->left = nullptr;
+        newNode->right = nullptr;
+        newNode->nL = 0;
+        newNode->nR = 0;
+        newNode->isThreaded = false;
 
-
-        // TODO: write this function.
-
-
+        while(current)
     }
 
     //
@@ -222,12 +226,7 @@ class mymap {
     // O(1)
     //
     int Size() {
-
-
-        // TODO: write this function.
-
-
-        return {};  // TODO: Update this return.
+        return size;
     }
 
     //
