@@ -7,6 +7,6 @@
         "vector": "cpp",
         "iostream": "cpp"
     },
-    "cmake.sourceDirectory": "${workspaceFolder}/251-project4/googletest",
+    "cmake.sourceDirectory": "${workspaceFolder}/251-project5",
     "cmake.configureSettings": { "gtest_build_samples": "ON" }
 }
