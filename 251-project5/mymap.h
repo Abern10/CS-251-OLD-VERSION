@@ -69,7 +69,7 @@ class mymap {
     };
 
     // to string recursive helper function
-    void _toString(NODE* node, ostream& output){
+    void _toString(NODE* node, ostream& output) {
         if(node == nullptr){
             return;
         }
@@ -175,7 +175,7 @@ class mymap {
             if(key < current->key) { // if input key is less than current key, go left
                 // threadedNode = current;
                 previous = current;
-                current = current->left;
+                // current = current->left;
             }
             else { // if input key is greater than current key, go right
                 previous = current;
@@ -257,7 +257,7 @@ class mymap {
                 // current = (current->isThreaded) ? nullptr : current->right;
             }
         }
-        return valueType();  // if key not foud returns default key
+        return valueType();  // if key not found returns default value
     }
 
     //
@@ -286,10 +286,9 @@ class mymap {
                 // current = (current->isThreaded) ? nullptr : current->right;
             }
         }
-
+        // if key is not found call put function to insert key with default value and return default value
         put(key, valueType());
-
-        return valueType();  // TODO: Update this return.
+        return valueType();
     }
 
     //
