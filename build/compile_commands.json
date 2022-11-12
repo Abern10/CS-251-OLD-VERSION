@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -std=gnu++11 -o CMakeFiles/251-project5.dir/tests.cpp.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/251-project5/tests.cpp\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/251-project5/tests.cpp"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googlemock",
+  "command": "/usr/bin/clang++  -I\"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock/include\" -I\"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock/src/gmock-all.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googlemock",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock/src/gmock_main.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -I\"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -I\"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/src/gtest-all.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1   -std=c++11 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/src/gtest_main.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample1_unittest.dir/samples/sample1_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample1_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample1_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample1_unittest.dir/samples/sample1.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample1.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample1.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample2_unittest.dir/samples/sample2_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample2_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample2_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample2_unittest.dir/samples/sample2.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample2.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample2.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample3_unittest.dir/samples/sample3_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample3_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample3_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample4_unittest.dir/samples/sample4_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample4_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample4_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample4_unittest.dir/samples/sample4.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample4.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample4.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample5_unittest.dir/samples/sample5_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample5_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample5_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample5_unittest.dir/samples/sample1.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample1.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample1.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample6_unittest.dir/samples/sample6_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample6_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample6_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample7_unittest.dir/samples/sample7_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample7_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample7_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample8_unittest.dir/samples/sample8_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample8_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample8_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample9_unittest.dir/samples/sample9_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample9_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample9_unittest.cc"
+},
+{
+  "directory": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/include\" -isystem \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest\" -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk  -DGTEST_HAS_PTHREAD=1  -std=c++11 -o CMakeFiles/sample10_unittest.dir/samples/sample10_unittest.cc.o -c \"/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample10_unittest.cc\"",
+  "file": "/Users/AlexBernatowicz/Desktop/CS 251/build/_deps/googletest-src/googletest/samples/sample10_unittest.cc"
+}
+]

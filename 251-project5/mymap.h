@@ -68,6 +68,16 @@ class mymap {
         }
     };
 
+    // to string recursive helper function
+    void _toString(NODE* node, ostream& output){
+        if(node == nullptr){
+            return;
+        }
+        _toString(node->left, output); // recursive function call for left side of BST
+        output << "key: " << node->key << " value: " << node->value << "\n"; // outputs the current node key and value
+        _toString(node->right, output); // recursive function call for right side of BST
+    }
+
  public:
     //
     // default constructor:
@@ -153,9 +163,28 @@ class mymap {
     // Space complexity: O(1)
     //
     void put(keyType key, valueType value) {
+        NODE* previous = nullptr;
         NODE* current = root;
+        NODE* threadedNode = nullptr;
+
+        while(current != nullptr) {
+            if(key == current->key) { // if keys are equal update value
+                current->value = value;
+                return;
+            }
+            if(key < current->key) { // if input key is less than current key, go left
+                // threadedNode = current;
+                previous = current;
+                current = current->left;
+            }
+            else { // if input key is greater than current key, go right
+                previous = current;
+                current = current->right;
+                // current = (current->isThreaded) ? nullptr : current->right;
+            }
+        }
+        // Creates new node to be inserted, member variables set to default values
         NODE* newNode = new NODE;
-        
         newNode->key = key;
         newNode->value = value;
         newNode->left = nullptr;
@@ -164,7 +193,21 @@ class mymap {
         newNode->nR = 0;
         newNode->isThreaded = false;
 
-        while(current)
+        if(previous == nullptr) {
+            root = newNode;
+            // root->isThreaded = true;
+        }
+        else if(key < previous->key) {
+            previous->left = newNode;
+        }
+        else {
+            previous->right = newNode;
+        }
+        // handles threading
+        // else if{
+
+        // }
+        size++;
     }
 
     //
@@ -174,12 +217,21 @@ class mymap {
     // threaded, self-balancing BST
     //
     bool contains(keyType key) {
+        NODE* current = root;
 
-
-        // TODO: write this function.
-
-
-        return {};  // TODO: Update this return.
+        while(current != nullptr) { 
+            if(key == current->key) { // if key found return true
+                return true;
+            }
+            if(key < current->key) { // search left child if less than
+                current = current->left;
+            }
+            else { // search right child if greater than
+                current = current->right;
+                // current = (current->isThreaded) ? nullptr : current->right;
+            }
+        }
+        return false;  // if key not found return false
     }
 
     //
@@ -191,12 +243,21 @@ class mymap {
     // threaded, self-balancing BST
     //
     valueType get(keyType key) {
+        NODE* current = root;
 
-
-        // TODO: write this function.
-
-
-        return {};  // TODO: Update this return.
+        while(current != nullptr) {
+            if(key == current->key) { // if key found return value associated with it
+                return current->value;
+            }
+            if(key < current->key) { // search left child if less than
+                current = current->left;
+            }
+            else { // search right child if greater than
+                current = current->right;
+                // current = (current->isThreaded) ? nullptr : current->right;
+            }
+        }
+        return valueType();  // if key not foud returns default key
     }
 
     //
@@ -211,12 +272,24 @@ class mymap {
     // Space complexity: O(1)
     //
     valueType operator[](keyType key) {
+        NODE* current = root;
 
+        while(current != nullptr) {
+            if(key == current->key) { // if key found return value associated
+                return current->value;
+            }
+            if(key < current->key) { // search left child if less than
+                current = current->left;
+            }
+            else { // search right child if greater than
+                current = current->right;
+                // current = (current->isThreaded) ? nullptr : current->right;
+            }
+        }
 
-        // TODO: write this function.
+        current.put(key, valueType());
 
-
-        return {};  // TODO: Update this return.
+        return valueType();  // TODO: Update this return.
     }
 
     //
@@ -267,12 +340,12 @@ class mymap {
     // threaded, self-balancing BST
     //
     string toString() {
+        stringstream ss;
+        NODE* current = root;
 
+        _toString(current, ss);
 
-        // TODO: write this function.
-
-
-        return {};  // TODO: Update this return.
+        return ss.str();
     }
 
     //
