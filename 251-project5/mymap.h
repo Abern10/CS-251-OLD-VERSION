@@ -287,7 +287,7 @@ class mymap {
             }
         }
 
-        current.put(key, valueType());
+        put(key, valueType());
 
         return valueType();  // TODO: Update this return.
     }

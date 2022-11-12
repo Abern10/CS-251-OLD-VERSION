@@ -71,15 +71,16 @@ TEST(mymap, getFunction) {
 TEST(mymap, bracketOperator){
     mymap<int, int> map1;
 
-    int arr[] = {2, 1, 3};
+    int arr[] = {2, 1, 3, 5 };
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         map1.put(arr[i], arr[i]);
     }
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4 ; i++) {
         EXPECT_EQ(map1[arr[i]], arr[i]);
-        EXPECT_EQ(map1.Size(), 3);
+        EXPECT_EQ(map1.Size(), 4);
     }
 
+    cout << map1.toString();
 }
